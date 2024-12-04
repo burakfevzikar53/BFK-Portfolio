@@ -1,0 +1,93 @@
+.about {
+  padding: 60px 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #6e8efb;
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* İstatistikler */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  color: #6e8efb;
+}
+
+.stat-item p {
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+/* Yetkinlik Barları */
+.skills {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.skill-bar {
+  margin-bottom: 20px;
+}
+
+.skill-bar span {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.bar {
+  height: 10px;
+  background: #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar .progress {
+  height: 10px;
+  background: #6e8efb;
+  transition: width 0.5s ease;
+}
+
+/* Temaya Göre Renkler */
+.about.dark-theme {
+  background: linear-gradient(135deg, #252525, #1e1e1e);
+  color: white;
+}
+
+.about.light-theme {
+  background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+  color: black;
+}
+
+.stat-item h3.dark-theme {
+  color: white;
+}
+
+.stat-item h3.light-theme {
+  color: #333;
+}
+/* Sayaçlar İçin Stil */
+.stat-item span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #6e8efb;
+}

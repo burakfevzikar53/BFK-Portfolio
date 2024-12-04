@@ -1,0 +1,17 @@
+/* Varsayılan Tema Ayarları */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease; /* Geçiş efekti */
+}
+
+html body[data-theme="light"] {
+  background: #f9f9f9;
+  color: #333;
+}
+
+html body[data-theme="dark"] {
+  background: #1e1e1e;
+  color: #fff;
+}

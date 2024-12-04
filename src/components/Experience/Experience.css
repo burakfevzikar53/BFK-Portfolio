@@ -1,0 +1,130 @@
+.experience {
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.experience h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #6e8efb;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: #6e8efb;
+  z-index: -1;
+  transition: box-shadow 0.8s ease; /* Parlama süresi uzatıldı */
+}
+
+.timeline-item:hover ~ .timeline::before {
+  box-shadow: 0 0 30px #6e8efb, 0 0 60px #6e8efb; /* Daha belirgin bir parlama efekti */
+}
+
+
+/* Timeline Item */
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 50px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  border: 2px solid #6e8efb;
+  color: #fff;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  width: calc(50% - 30px);
+  transition: transform 1.2s ease, box-shadow 1.2s ease, opacity 1.2s ease; /* Animasyon süresi 1.2 saniye */
+  opacity: 0; /* İlk durumda görünmez */
+  transform: translateY(100px); /* Kutular yukarıdan kayarak gelir */
+}
+
+.timeline-item.visible {
+  opacity: 1; /* Görünür hale gelir */
+  transform: translateY(0); /* Yatay hizaya gelir */
+}
+
+
+/* Sağdan ve Soldan Hizalama */
+.timeline-item.left {
+  margin-right: auto;
+}
+
+.timeline-item.right {
+  margin-left: auto;
+}
+
+/* Hover Animasyon */
+.timeline-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #6e8efb, 0 0 30px #6e8efb;
+}
+
+/* İçerik */
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.timeline-content h3 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.timeline-content h4 {
+  font-size: 1.2rem;
+  color: #6e8efb;
+}
+
+.timeline-content p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+/* Görsel Eklemeleri */
+.timeline-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Light Mode */
+.light .timeline-item {
+  background: #fff;
+  color: #333;
+  border-color: #6e8efb;
+}
+
+.light .timeline-content h3 {
+  color: #333;
+}
+
+.light .timeline-content h4 {
+  color: #6e8efb;
+}
+
+.light .timeline-content p {
+  color: #555;
+}

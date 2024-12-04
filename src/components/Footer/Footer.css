@@ -1,0 +1,35 @@
+.footer {
+  padding: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+  text-align: center;
+  position: relative; /* Navbar çakışmasını önler */
+  z-index: 1; /* Navbar'dan daha düşük bir index */
+}
+
+/* Footer yazısı */
+.footer p {
+  margin-bottom: 10px;
+}
+
+/* Sosyal medya ikonları */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Dark Mode için ikonlar */
+.social-icons.dark-theme a {
+  color: white; /* Beyaz ikonlar */
+}
+
+/* Light Mode için ikonlar */
+.social-icons.light-theme a {
+  color: black; /* Siyah ikonlar */
+}
+
+/* Hover durumu her iki tema için */
+.social-icons a:hover {
+  color: #6e8efb; /* Mor renk hover */
+  transform: scale(1.2); /* Hafif büyüme efekti */
+}

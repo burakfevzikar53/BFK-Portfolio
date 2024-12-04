@@ -1,0 +1,203 @@
+.projects {
+  padding: 60px 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #6e8efb;
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  perspective: 1000px; /* 3D Etkisi */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* Hover efekti */
+
+
+.project-card {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  border-radius: 15px;
+  transform-style: preserve-3d; /* 3D döndürme için */
+  transition: transform 0.8s ease-in-out; /* Döndürme animasyonu */
+  box-shadow: 0 4px 8px rgba(29, 29, 29, 0.1); /* Hafif gölge efekti */
+}
+.project-card.dark {
+  background: rgb(36, 36, 36);
+  color: #fff;
+}
+
+.project-card.light {
+  background: #fff;
+  color: #333;
+}
+.project-card.flipped {
+  transform: rotateY(180deg); /* Kartı döndür */
+}
+.project-card:hover:not(.flipped) {
+  top: -10px; /* Kartı yukarı kaldır */
+  box-shadow: 
+    0 8px 20px rgba(128, 0, 128, 0.4), /* Mor bir gölge */
+    0 0 25px rgba(186, 85, 211, 0.8), /* Parlak mor iç parlama */
+    0 0 50px rgba(186, 85, 211, 1); /* Daha güçlü dış parlama */
+  transition: top 0.5s ease, box-shadow 0.5s ease; /* Animasyon ekle */
+}
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+}
+
+.card-front img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px; /* Görselin kenarlarını yuvarlat */
+  overflow: hidden; /* Sadece görüntü için uygulayın */
+}
+
+.card-front h3 {
+  font-size: 1.2rem;
+  color: #6e8efb; /* Başlık rengi */
+  margin-bottom: 10px;
+}
+
+.card-front p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.front-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card-front .tags {
+  margin: 10px 0;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.card-front .tag {
+  display: inline-block;
+  background: #6e8efb;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+.card-back .tag {
+  background: #f39c12;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.github-button,
+.details-button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.github-button {
+  background: #6e8efb;
+  color: white;
+  border: none;
+}
+
+.github-button:hover {
+  background: #a777e3;
+}
+
+.details-button {
+  background: #333;
+  color: white;
+  border: none;
+}
+
+.details-button:hover {
+  background: #555;
+}
+
+.card-back {
+  display: flex;
+  flex-direction: column; /* İçerikleri dikey hizalamak için */
+  align-items: center; /* Yatayda ortalama */
+  justify-content: center; /* Dikeyde ortalama */
+  transform: rotateY(180deg);
+}
+
+.card-back h3 {
+  font-size: 1.2rem;
+  color: #6e8efb; /* Başlık rengi */
+  margin-bottom: 15px;
+}
+
+.card-back .technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.card-back .technology-badge {
+  display: inline-block;
+  background: #6e8efb;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.card-back .back-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pdf-button,
+.go-back-button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #6e8efb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.pdf-button:hover,
+.go-back-button:hover {
+  background: #a777e3;
+}
+.qrcode-canvas {
+  margin-bottom: 20px; /* QR kod ile diğer elemanlar arasında boşluk */
+}
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* Tek sütun */
+  }
+}
