@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/BFK-Portfolio/static/css/main.6f4633c8.css",
+    "main.js": "/BFK-Portfolio/static/js/main.fe5adca2.js",
+    "static/js/239.c8ed0099.chunk.js": "/BFK-Portfolio/static/js/239.c8ed0099.chunk.js",
+    "static/js/213.a2dd3e47.chunk.js": "/BFK-Portfolio/static/js/213.a2dd3e47.chunk.js",
+    "static/js/732.63242b32.chunk.js": "/BFK-Portfolio/static/js/732.63242b32.chunk.js",
+    "static/media/cars.png": "/BFK-Portfolio/static/media/cars.394b9a49867263d10074.png",
+    "static/media/load.png": "/BFK-Portfolio/static/media/load.6372ac5e7170386982c7.png",
+    "static/media/q7.png": "/BFK-Portfolio/static/media/q7.aba1bcdfde58333e4a35.png",
+    "static/media/first.webp": "/BFK-Portfolio/static/media/first.1fc53b8fd32218dddfd6.webp",
+    "static/media/cb.webp": "/BFK-Portfolio/static/media/cb.5b1e781aa6b1017521a6.webp",
+    "static/media/sm98.webp": "/BFK-Portfolio/static/media/sm98.b1e6fa5167b57d81f55e.webp",
+    "static/media/BurakFevziKar-CV-2025.pdf": "/BFK-Portfolio/static/media/BurakFevziKar-CV-2025.534f96e5ac7b29879411.pdf",
+    "static/media/koc.jpeg": "/BFK-Portfolio/static/media/koc.4857796d6a9716f9e185.jpeg",
+    "static/media/trivia.jpeg": "/BFK-Portfolio/static/media/trivia.de45e63c0e5619cae9dc.jpeg",
+    "static/media/poster.png": "/BFK-Portfolio/static/media/poster.86a5c685fb785ff4d613.png",
+    "static/media/ecom.png": "/BFK-Portfolio/static/media/ecom.bc9f4a0190bf31d56a43.png",
+    "static/media/15.jpeg": "/BFK-Portfolio/static/media/15.6143fa8f6b0afcb69807.jpeg",
+    "static/media/vf.jpeg": "/BFK-Portfolio/static/media/vf.8ded130b01940957507d.jpeg",
+    "static/media/weat.png": "/BFK-Portfolio/static/media/weat.b6dcef21b921a61d6dea.png",
+    "static/media/trivia.jpg": "/BFK-Portfolio/static/media/trivia.24cce1c221e13b4fc204.jpg",
+    "static/media/pass.png": "/BFK-Portfolio/static/media/pass.1c9c75fde5a59fc9af0a.png",
+    "static/media/step.jpg": "/BFK-Portfolio/static/media/step.b8ad5937bf4bbd0e45b2.jpg",
+    "index.html": "/BFK-Portfolio/index.html",
+    "main.6f4633c8.css.map": "/BFK-Portfolio/static/css/main.6f4633c8.css.map",
+    "main.fe5adca2.js.map": "/BFK-Portfolio/static/js/main.fe5adca2.js.map",
+    "239.c8ed0099.chunk.js.map": "/BFK-Portfolio/static/js/239.c8ed0099.chunk.js.map",
+    "213.a2dd3e47.chunk.js.map": "/BFK-Portfolio/static/js/213.a2dd3e47.chunk.js.map",
+    "732.63242b32.chunk.js.map": "/BFK-Portfolio/static/js/732.63242b32.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f4633c8.css",
+    "static/js/main.fe5adca2.js"
+  ]
+}
