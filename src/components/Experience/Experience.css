@@ -128,3 +128,10 @@
 .light .timeline-content p {
   color: #555;
 }
+
+@media (max-width: 768px) {
+  .timeline-item {
+    grid-template-columns: 1fr; /* Tek sütun */
+    width: 300px;
+  }
+}
