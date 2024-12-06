@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/BFK-Portfolio/static/css/main.6f4633c8.css",
-    "main.js": "/BFK-Portfolio/static/js/main.fe5adca2.js",
+    "main.css": "/BFK-Portfolio/static/css/main.93e463b9.css",
+    "main.js": "/BFK-Portfolio/static/js/main.998060bf.js",
     "static/js/239.c8ed0099.chunk.js": "/BFK-Portfolio/static/js/239.c8ed0099.chunk.js",
     "static/js/213.a2dd3e47.chunk.js": "/BFK-Portfolio/static/js/213.a2dd3e47.chunk.js",
     "static/js/732.63242b32.chunk.js": "/BFK-Portfolio/static/js/732.63242b32.chunk.js",
@@ -23,14 +23,14 @@
     "static/media/pass.png": "/BFK-Portfolio/static/media/pass.1c9c75fde5a59fc9af0a.png",
     "static/media/step.jpg": "/BFK-Portfolio/static/media/step.b8ad5937bf4bbd0e45b2.jpg",
     "index.html": "/BFK-Portfolio/index.html",
-    "main.6f4633c8.css.map": "/BFK-Portfolio/static/css/main.6f4633c8.css.map",
-    "main.fe5adca2.js.map": "/BFK-Portfolio/static/js/main.fe5adca2.js.map",
+    "main.93e463b9.css.map": "/BFK-Portfolio/static/css/main.93e463b9.css.map",
+    "main.998060bf.js.map": "/BFK-Portfolio/static/js/main.998060bf.js.map",
     "239.c8ed0099.chunk.js.map": "/BFK-Portfolio/static/js/239.c8ed0099.chunk.js.map",
     "213.a2dd3e47.chunk.js.map": "/BFK-Portfolio/static/js/213.a2dd3e47.chunk.js.map",
     "732.63242b32.chunk.js.map": "/BFK-Portfolio/static/js/732.63242b32.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f4633c8.css",
-    "static/js/main.fe5adca2.js"
+    "static/css/main.93e463b9.css",
+    "static/js/main.998060bf.js"
   ]
 }
