@@ -9,24 +9,34 @@ import CV from "../../assets/BurakFevziKar-CV-2025.pdf";
 const Header = () => {
   const { language } = useLanguage();
   const { theme } = useTheme();
-  const [isDownloading, setIsDownloading] = useState(false); // İndirme animasyonu durumu
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownloadClick = () => {
-    setIsDownloading(true); // Animasyonu başlat
+    setIsDownloading(true);
     setTimeout(() => {
-      setIsDownloading(false); // Animasyonu bitir
-    }, 2000); // 2 saniyelik animasyon
+      setIsDownloading(false);
+    }, 2000);
   };
   const titles = {
-    en: ["Full Stack Developer", "Backend Developer", "Frontend Developer", "Game Developer"],
-    tr: ["Full Stack Geliştirici", "Backend Geliştirici", "Frontend Geliştirici", "Game Developer"],
+    en: [
+      "Full Stack Developer",
+      "Backend Developer",
+      "Frontend Developer",
+      "Game Developer",
+    ],
+    tr: [
+      "Full Stack Geliştirici",
+      "Backend Geliştirici",
+      "Frontend Geliştirici",
+      "Game Developer",
+    ],
   };
 
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const typingSpeed = 150; 
-  const deletingSpeed = 100; 
+  const typingSpeed = 150;
+  const deletingSpeed = 100;
   const pauseTime = 1500;
 
   useEffect(() => {
@@ -61,22 +71,51 @@ const Header = () => {
           <img src={img} alt="My Profile" className="profile-photo" />
         </div>
         <h1>{translations[language].header}</h1>
-        <p className="typewriter-text">{displayedText}</p>
-        <a href={CV} download="BurakFevziKar-CV-2025" className={`cv-button ${isDownloading ? "downloading" : ""}`} onClick={handleDownloadClick}>
-        {isDownloading
-            ? language === "en"
-              ? "Downloading..."
-              : "İndiriliyor..."
-            : translations[language].cv}
+        <div className="typewriter-container">
+          <p className="typewriter-text">{displayedText || "\u00A0"}</p>
+        </div>
+        <a
+          href={CV}
+          download="BurakFevziKar-CV-2025"
+          className={`cv-button ${isDownloading ? "downloading" : ""}`}
+          onClick={handleDownloadClick}
+        >
+          {isDownloading ? (
+            language === "en" ? (
+              "📄 Downloading..."
+            ) : (
+              "📄 İndiriliyor..."
+            )
+          ) : (
+            <>
+              <span>📄</span> {translations[language].cv}
+            </>
+          )}
         </a>
+
         <div className="social-icons">
-          <a href="https://www.linkedin.com/in/burak-fevzi-kar-2903b3201/" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/in/burak-fevzi-kar-2903b3201/"
+            target="_blank"
+            rel="noreferrer"
+            className="linkedin"
+          >
             <FaLinkedin />
           </a>
-          <a href="https://github.com/burakfevzikar53" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/burakfevzikar53"
+            target="_blank"
+            rel="noreferrer"
+            className="github"
+          >
             <FaGithub />
           </a>
-          <a href="https://instagram.com/burakfevzikar" target="_blank" rel="noreferrer">
+          <a
+            href="https://instagram.com/burakfevzikar"
+            target="_blank"
+            rel="noreferrer"
+            className="instagram"
+          >
             <FaInstagram />
           </a>
         </div>
