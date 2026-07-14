@@ -5,7 +5,7 @@ import img from "../../images/15.jpeg";
 import { useLanguage } from "../../context/LanguageContext";
 import translations from "../../translations";
 import { useTheme } from "../../context/ThemeContext";
-import CV from "../../assets/BurakFevziKar-CV-2025.pdf";
+import CV from "../../assets/Burak Fevzi Kar -CV- 2027.pdf";
 
 const Header = () => {
   const { language } = useLanguage();
