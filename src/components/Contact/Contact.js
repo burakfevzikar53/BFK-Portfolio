@@ -5,6 +5,7 @@ import translations from "../../translations";
 import { useTheme } from "../../context/ThemeContext";
 import { MdOutlineEmail, MdLocationOn } from "react-icons/md";
 import { BsWhatsapp } from "react-icons/bs";
+import Reveal from "../Reveal/Reveal";
 
 const Contact = () => {
   const { language } = useLanguage();
@@ -55,7 +56,14 @@ const Contact = () => {
       id="contact"
       className={`contact ${theme === "dark" ? "dark-theme" : "light-theme"}`}
     >
-      <h2>{translations[language].contact}</h2>
+      <Reveal>
+        <h2 className="section-title">{translations[language].contact}</h2>
+        <p className="section-subtitle">
+          {language === "en"
+            ? "Have an AI project in mind or just want to say hi? My inbox is always open."
+            : "Aklınızda bir AI projesi mi var, ya da sadece merhaba mı demek istiyorsunuz? Mesaj kutum her zaman açık."}
+        </p>
+      </Reveal>
       <div className="contact-container">
         <form
           className={`contact-form ${

@@ -1,25 +1,35 @@
 .language-switcher {
   position: fixed;
-  top: 10px;
+  top: 14px;
   right: 20px;
   z-index: 1000;
 }
 
 .language-switcher button {
-  padding: 0;
-  background: none;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--card-shadow);
   cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.language-switcher button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 108, 255, 0.5);
+  box-shadow: var(--card-shadow), var(--glow);
 }
 
 .language-switcher img {
-  width: 30px; /* Bayrak boyutu */
-  height: 20px;
-  border-radius: 3px; /* Hafif yuvarlatılmış köşeler */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.language-switcher img:hover {
-  transform: scale(1.1); /* Hover animasyonu */
+  width: 28px;
+  height: 19px;
+  border-radius: 4px;
+  display: block;
 }

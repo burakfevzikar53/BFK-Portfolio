@@ -1,18 +1,24 @@
-/* Ana container */
 .theme-toggle {
   display: flex;
   align-items: center;
   gap: 10px;
   position: fixed;
-  top: 10px;
+  top: 14px;
   left: 20px;
   z-index: 1000;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--card-shadow);
 }
 
 /* Toggle Switch */
 .toggle-switch {
   position: relative;
-  width: 50px;
+  width: 48px;
   height: 24px;
 }
 
@@ -25,43 +31,40 @@
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: grey;
-  transition: background-color 0.3s, transform 0.3s;
+  inset: 0;
+  background: rgba(124, 108, 255, 0.25);
+  border: 1px solid var(--surface-border);
+  transition: background var(--transition);
   border-radius: 34px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
-  left: 2px;
+  height: 18px;
+  width: 18px;
+  left: 3px;
   bottom: 2px;
-  background-color: white;
-  transition: transform 0.3s;
+  background: var(--gradient);
+  box-shadow: 0 0 8px rgba(124, 108, 255, 0.7);
+  transition: transform var(--transition);
   border-radius: 50%;
 }
 
-/* Dark Mode Aktifken */
 input:checked + .slider {
-  background-color: black;
+  background: rgba(12, 16, 32, 0.8);
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(23px);
 }
 
-/* Tema Etiketi */
 .theme-label {
   font-size: 1rem;
-  color: #333;
-  transition: color 0.3s;
+  line-height: 1;
+  transition: transform var(--transition);
 }
 
-body[data-theme="dark"] .theme-label {
-  color: #fff;
+.theme-toggle:hover .theme-label {
+  transform: rotate(20deg) scale(1.15);
 }

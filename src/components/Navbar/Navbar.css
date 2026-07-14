@@ -1,63 +1,102 @@
 .navbar {
   position: fixed;
-  bottom: 55px;
+  bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  background: #333;
-  border-radius: 50px;
-  padding: 8px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 1000;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
-  margin: auto;
-  padding-left: initial;
-  padding-right: initial;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li {
-  font-size: 1.5rem;
-  color: #fff;
-  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.15rem;
+  color: var(--text-muted);
   border-radius: 50%;
-  background: #444;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   cursor: pointer;
 }
 
-.nav-links li.active {
-  background: #424874;
-  color: #fff;
-  box-shadow: 0 0 8px #a777e3;
+/* Tooltip label */
+.nav-links li::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface-solid);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--card-shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
 }
 
-.nav-links li:hover {
-  background: #6e8efb;
+.nav-links li:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-links li.active {
+  background: var(--gradient);
   color: #fff;
+  box-shadow: 0 0 16px rgba(124, 108, 255, 0.6);
+}
+
+.nav-links li:hover:not(.active) {
+  background: rgba(124, 108, 255, 0.15);
+  color: var(--text);
+  transform: translateY(-3px);
 }
 
 .nav-links li:active {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
+
 @media (max-width: 768px) {
   .navbar {
-    bottom: 5px; /* Mobil cihazlarda daha aşağıya */
-    padding: 5px 15px;
-    /* background: none; */
+    bottom: 12px;
+    padding: 6px 10px;
+    max-width: calc(100vw - 24px);
+  }
+
+  .nav-links {
+    gap: 4px;
   }
 
   .nav-links li {
-    font-size: 1rem; /* İkonları küçült */
-    padding: 8px;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
   }
-  .nav-links {
-    gap: 4px;
-    display:flex;
-    
+
+  .nav-links li::after {
+    display: none;
   }
 }

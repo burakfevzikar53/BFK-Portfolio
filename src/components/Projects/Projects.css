@@ -1,203 +1,305 @@
 .projects {
-  padding: 60px 20px;
-  transition: background 0.3s ease, color 0.3s ease;
-  text-align: center;
-}
-
-.projects h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #6e8efb;
   text-align: center;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
-  perspective: 1000px; /* 3D Etkisi */
-  max-width: 1200px;
+  perspective: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
 }
-/* Hover efekti */
-
 
 .project-card {
   width: 100%;
-  height: 400px;
+  height: 470px;
   position: relative;
-  border-radius: 15px;
-  transform-style: preserve-3d; /* 3D döndürme için */
-  transition: transform 0.8s ease-in-out; /* Döndürme animasyonu */
-  box-shadow: 0 4px 8px rgba(29, 29, 29, 0.1); /* Hafif gölge efekti */
-}
-.project-card.dark {
-  background: rgb(36, 36, 36);
-  color: #fff;
+  border-radius: var(--radius);
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-.project-card.light {
-  background: #fff;
-  color: #333;
-}
 .project-card.flipped {
-  transform: rotateY(180deg); /* Kartı döndür */
+  transform: rotateY(180deg);
 }
-.project-card:hover:not(.flipped) {
-  top: -10px; /* Kartı yukarı kaldır */
-  box-shadow: 
-    0 8px 20px rgba(128, 0, 128, 0.4), /* Mor bir gölge */
-    0 0 25px rgba(186, 85, 211, 0.8), /* Parlak mor iç parlama */
-    0 0 50px rgba(186, 85, 211, 1); /* Daha güçlü dış parlama */
-  transition: top 0.5s ease, box-shadow 0.5s ease; /* Animasyon ekle */
-}
+
 .card-front,
 .card-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   backface-visibility: hidden;
-  border-radius: 15px;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: box-shadow var(--transition), border-color var(--transition),
+    transform var(--transition);
 }
 
-.card-front img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px; /* Görselin kenarlarını yuvarlat */
-  overflow: hidden; /* Sadece görüntü için uygulayın */
+.project-card:hover:not(.flipped) .card-front {
+  transform: translateY(-8px);
+  border-color: rgba(124, 108, 255, 0.5);
+  box-shadow: var(--card-shadow), 0 0 30px rgba(168, 85, 247, 0.35);
 }
 
+/* ---------- Cover ---------- */
+.project-cover {
+  position: relative;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* İnce nokta deseni ile kapağa doku kazandır */
+.project-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1.5px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+}
+
+.project-cover-icon {
+  position: relative;
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover:not(.flipped) .project-cover-icon {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+/* ---------- Status badge (kapak üstü, sol) ---------- */
+.status-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(10, 12, 24, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.status-badge.status-review {
+  background: rgba(245, 158, 11, 0.9);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.status-badge.status-opensource {
+  background: rgba(16, 185, 129, 0.85);
+}
+
+.status-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  animation: statusPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ---------- AI badge ---------- */
+.ai-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--gradient);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
+  animation: aiBadgePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes aiBadgePulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(168, 85, 247, 0.5); }
+  50%      { box-shadow: 0 0 20px rgba(168, 85, 247, 0.9); }
+}
+
+/* ---------- Front content ---------- */
 .card-front h3 {
-  font-size: 1.2rem;
-  color: #6e8efb; /* Başlık rengi */
-  margin-bottom: 10px;
+  font-size: 1.22rem;
+  color: var(--text);
+  margin: 18px 18px 10px;
 }
 
 .card-front p {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 15px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0 18px 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .front-buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-.card-front .tags {
-  margin: 10px 0;
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-}
-
-.card-front .tag {
-  display: inline-block;
-  background: #6e8efb;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-}
-.card-back .tag {
-  background: #f39c12;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
 .github-button,
 .details-button {
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  border: none;
+  transition: transform var(--transition), box-shadow var(--transition),
+    background var(--transition);
 }
 
 .github-button {
-  background: #6e8efb;
+  background: var(--gradient);
   color: white;
-  border: none;
 }
 
 .github-button:hover {
-  background: #a777e3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(124, 108, 255, 0.45);
 }
 
 .details-button {
-  background: #333;
-  color: white;
-  border: none;
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid rgba(124, 108, 255, 0.45);
 }
 
 .details-button:hover {
-  background: #555;
+  transform: translateY(-2px);
+  background: rgba(124, 108, 255, 0.14);
 }
 
+/* ---------- Back ---------- */
 .card-back {
   display: flex;
-  flex-direction: column; /* İçerikleri dikey hizalamak için */
-  align-items: center; /* Yatayda ortalama */
-  justify-content: center; /* Dikeyde ortalama */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 24px;
   transform: rotateY(180deg);
 }
 
 .card-back h3 {
-  font-size: 1.2rem;
-  color: #6e8efb; /* Başlık rengi */
-  margin-bottom: 15px;
+  font-size: 1.15rem;
+  margin: 0 0 14px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Öne çıkanlar listesi */
+.highlights {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.highlights li {
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  padding: 5px 0 5px 24px;
+}
+
+.highlights li::before {
+  content: "▹";
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .card-back .technologies {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
-  margin: 20px 0;
+  margin: 0 0 16px;
 }
 
-.card-back .technology-badge {
-  display: inline-block;
-  background: #6e8efb;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
+.card-back .tag {
+  background: rgba(124, 108, 255, 0.14);
+  border: 1px solid rgba(124, 108, 255, 0.32);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
 }
 
 .card-back .back-buttons {
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-top: 20px;
 }
 
-.pdf-button,
 .go-back-button {
-  padding: 10px 15px;
-  border-radius: 5px;
-  background: #6e8efb;
-  color: white;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  color: var(--text);
+  background: rgba(124, 108, 255, 0.18);
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.pdf-button:hover,
 .go-back-button:hover {
-  background: #a777e3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(124, 108, 255, 0.4);
 }
-.qrcode-canvas {
-  margin-bottom: 20px; /* QR kod ile diğer elemanlar arasında boşluk */
-}
-/* Responsive Tasarım */
+
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .projects-grid {
-    grid-template-columns: 1fr; /* Tek sütun */
+    grid-template-columns: 1fr;
   }
 }

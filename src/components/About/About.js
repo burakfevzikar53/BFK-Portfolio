@@ -3,13 +3,16 @@ import "./About.css";
 import { useLanguage } from "../../context/LanguageContext";
 import translations from "../../translations";
 import { useTheme } from "../../context/ThemeContext";
+import { useInView } from "react-intersection-observer";
+import Reveal from "../Reveal/Reveal";
 
-const Counter = ({ endValue, duration }) => {
+const Counter = ({ endValue, duration, start }) => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
+    if (!start) return;
     let startValue = 0;
-    const increment = Math.ceil(endValue / (duration / 50));
+    const increment = Math.max(1, Math.ceil(endValue / (duration / 50)));
 
     const interval = setInterval(() => {
       startValue += increment;
@@ -19,10 +22,10 @@ const Counter = ({ endValue, duration }) => {
       } else {
         setValue(startValue);
       }
-    }, 120);
+    }, 60);
 
     return () => clearInterval(interval);
-  }, [endValue, duration]);
+  }, [endValue, duration, start]);
 
   return <span>{value}+</span>;
 };
@@ -30,22 +33,33 @@ const Counter = ({ endValue, duration }) => {
 const About = () => {
   const { language } = useLanguage();
   const { theme } = useTheme();
+  const { ref: statsRef, inView: statsInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+  const { ref: skillsRef, inView: skillsInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
   const aboutMeText = {
-    en: "Experienced Software Developer with 5+ years of expertise in Backend, Frontend, and Interactive Voice Response (IVR) systems. Demonstrates excellence across all stages of the software development lifecycle, from architectural design and coding to debugging, testing, and maintenance. A proven leader and collaborative team player as a Scrum Master in agile environments. Currently expanding expertise into game development through personal projects and specialized training.",
-    tr: "Backend, Frontend ve Etkileşimli Sesli Yanıt (IVR) sistemlerinde 5+ yıllık deneyime sahip deneyimli bir Yazılım Geliştirici. Yazılım geliştirme yaşam döngüsünün tüm aşamalarında, mimari tasarımdan kodlamaya, hata ayıklamadan test ve bakıma kadar mükemmeliyet sergiler. Scrum Master olarak çevik ortamlarda liderlik ve ekip çalışmasına dayalı işbirliği sağlama konusunda yetkindir. Şu anda kişisel projeler ve özel eğitimler yoluyla oyun geliştirme alanında uzmanlık kazanmaktadır.",
+    en: "Software Developer with 6+ years of experience across Backend, Frontend and Conversational AI (chatbot, voicebot, IVR) systems. Currently focused on AI engineering: integrating large language models, building agentic AI workflows with tool use and MCP, and shipping intelligent products end-to-end. A proven leader and collaborative team player as a Scrum Master in agile environments, with a growing passion for game development.",
+    tr: "Backend, Frontend ve Konuşma Tabanlı AI (chatbot, voicebot, IVR) sistemlerinde 6+ yıllık deneyime sahip Yazılım Geliştirici. Şu anda odak noktası yapay zeka mühendisliği: büyük dil modellerini entegre etmek, araç kullanımı ve MCP ile agentic AI iş akışları kurmak ve akıllı ürünleri uçtan uca hayata geçirmek. Scrum Master olarak çevik ortamlarda liderlik ve ekip çalışması konusunda yetkin; oyun geliştirmeye de tutkuyla ilgileniyor.",
   };
 
   const skills = [
-    { label: language === "en" ? "Backend Development":"Backend Geliştirici", level: 85 },
-    { label: language === "en" ? "Frontend Development":"Frontend Geliştirici", level: 85 },
-    { label: language === "en" ? "IVR Systems":"IVR Sistemleri", level: 80 },
-    { label: language === "en" ? "Game Development":"Oyun Geliştirici", level: 70 },
+    { label: language === "en" ? "AI & LLM Engineering" : "AI & LLM Mühendisliği", level: 85 },
+    { label: language === "en" ? "Agentic AI" : "Agentic AI", level: 80 },
+    { label: language === "en" ? "Backend Development" : "Backend Geliştirme", level: 85 },
+    { label: language === "en" ? "Frontend Development" : "Frontend Geliştirme", level: 85 },
+    { label: language === "en" ? "Conversational AI / IVR" : "Konuşma Tabanlı AI / IVR", level: 90 },
+    { label: language === "en" ? "Game Development" : "Oyun Geliştirme", level: 70 },
   ];
 
   const stats = [
-    { label: language === "en" ? "Years of Experience" : "Deneyim Yılı", value: 5 },
+    { label: language === "en" ? "Years of Experience" : "Deneyim Yılı", value: 6 },
     { label: language === "en" ? "Completed Projects" : "Tamamlanan Proje", value: 50 },
+    { label: language === "en" ? "AI Products Shipped" : "Yayınlanan AI Ürünü", value: 3 },
     { label: language === "en" ? "Skills Mastered" : "Uzmanlık Alanı", value: 10 },
   ];
 
@@ -54,28 +68,38 @@ const About = () => {
       id="about"
       className={`about ${theme === "dark" ? "dark-theme" : "light-theme"}`}
     >
-      <h2>{translations[language].about}</h2>
-      <p>{aboutMeText[language]}</p>
+      <Reveal>
+        <h2 className="section-title">{translations[language].about}</h2>
+        <p className="about-text">{aboutMeText[language]}</p>
+      </Reveal>
 
-      <div className="stats">
+      <div className="stats" ref={statsRef}>
         {stats.map((stat, index) => (
-          <div key={index} className="stat-item">
-            <h3>
-              <Counter endValue={stat.value} duration={2000} />
-            </h3>
-            <p>{stat.label}</p>
-          </div>
+          <Reveal key={index} delay={index * 120} direction="scale">
+            <div className="stat-item glass">
+              <h3>
+                <Counter endValue={stat.value} duration={1500} start={statsInView} />
+              </h3>
+              <p>{stat.label}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
 
-      <div className="skills">
+      <div className="skills glass" ref={skillsRef}>
         {skills.map((skill, index) => (
           <div key={index} className="skill-bar">
-            <span>{skill.label}</span>
+            <div className="skill-bar-head">
+              <span>{skill.label}</span>
+              <span className="skill-level">{skill.level}%</span>
+            </div>
             <div className="bar">
               <div
                 className="progress"
-                style={{ width: `${skill.level}%` }}
+                style={{
+                  width: skillsInView ? `${skill.level}%` : "0%",
+                  transitionDelay: `${index * 120}ms`,
+                }}
               ></div>
             </div>
           </div>

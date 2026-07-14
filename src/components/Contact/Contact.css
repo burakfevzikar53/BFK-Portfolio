@@ -1,123 +1,136 @@
 .contact {
-  padding: 60px 20px;
-  transition: background 0.3s ease, color 0.3s ease;
   text-align: center;
-}
-
-.contact h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #6e8efb;
 }
 
 .contact-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 26px;
   justify-content: center;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 860px;
+  margin: 56px auto 0;
 }
 
-/* Form Stili */
+/* ---------- Form ---------- */
 .contact-form {
   flex: 1;
   min-width: 300px;
-  max-width: 400px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
+  padding: 30px 26px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  transition: background 0.3s ease, color 0.3s ease;
-  box-shadow: 0 0 0 2px #444;
+  padding: 13px 16px;
+  font-size: 0.98rem;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: rgba(124, 108, 255, 0.07);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(124, 108, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(124, 108, 255, 0.18);
 }
 
 .contact-form button {
-  padding: 10px;
+  padding: 13px;
   font-size: 1rem;
-  background: #6e8efb;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  background: var(--gradient);
+  background-size: 200% 200%;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  box-shadow: 0 6px 20px rgba(124, 108, 255, 0.35);
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: gradientShift 6s ease infinite;
 }
 
 .contact-form button:hover {
-  background: #a777e3;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(168, 85, 247, 0.5);
 }
 
-/* İletişim Bilgisi */
+/* ---------- Info cards ---------- */
 .contact-info {
   flex: 1;
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
+  justify-content: center;
 }
 
 .contact-info-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  background: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 4px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
 }
 
 .contact-info-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px) translateX(4px);
+  border-color: rgba(124, 108, 255, 0.45);
+  box-shadow: var(--card-shadow), var(--glow);
 }
 
 .contact-info-item a {
   text-decoration: none;
-  color: inherit;
+  color: var(--text);
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.contact-info-item h4 {
-  margin: 0;
-  font-size: 1.2rem;
+  gap: 14px;
+  padding: 14px 18px;
 }
 
 .contact-info-item p {
   margin: 0;
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.98rem;
+  color: var(--text);
 }
 
-/* İkonlar */
 .contact-icon {
-  font-size: 1.8rem;
-  color: #6e8efb;
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--gradient);
+  box-shadow: var(--glow);
 }
 
-/* Temaya Göre Renkler */
-.contact.dark-theme .contact-info-item {
-  background: #333;
-  color: white;
-}
-
-.contact.light-theme .contact-info-item {
-  background: #fff;
-  color: black;
-}
-
-/* Responsive Tasarım */
 @media (max-width: 768px) {
   .contact-container {
     flex-direction: column;
+  }
+
+  .contact-form {
+    max-width: none;
   }
 }

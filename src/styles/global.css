@@ -1,17 +1,247 @@
-/* Varsayılan Tema Ayarları */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  transition: background 0.3s ease, color 0.3s ease; /* Geçiş efekti */
+/* ============================================================
+   BFK Portfolio — Global Design System
+   ============================================================ */
+
+:root {
+  --font-heading: "Sora", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Theme tokens ---------- */
+html body[data-theme="dark"] {
+  --bg: #070912;
+  --bg-soft: #0c1020;
+  --surface: rgba(16, 20, 42, 0.72);
+  --surface-solid: #10142a;
+  --surface-border: rgba(255, 255, 255, 0.09);
+  --text: #e9ecf8;
+  --text-muted: #9aa3c2;
+  --primary: #6d7cff;
+  --secondary: #a855f7;
+  --accent: #22d3ee;
+  --gradient: linear-gradient(120deg, #6d7cff, #a855f7 50%, #22d3ee);
+  --glow: 0 0 25px rgba(124, 108, 255, 0.35);
+  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  --orb-opacity: 0.55;
+  background: var(--bg);
+  color: var(--text);
 }
 
 html body[data-theme="light"] {
-  background: #f9f9f9;
-  color: #333;
+  --bg: #f4f6fc;
+  --bg-soft: #eaeefb;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-solid: #ffffff;
+  --surface-border: rgba(28, 32, 51, 0.09);
+  --text: #1c2033;
+  --text-muted: #5a6382;
+  --primary: #5b6cff;
+  --secondary: #9333ea;
+  --accent: #0891b2;
+  --gradient: linear-gradient(120deg, #5b6cff, #9333ea 50%, #0891b2);
+  --glow: 0 0 25px rgba(91, 108, 255, 0.25);
+  --card-shadow: 0 10px 35px rgba(28, 32, 51, 0.1);
+  --orb-opacity: 0.3;
+  background: var(--bg);
+  color: var(--text);
 }
 
-html body[data-theme="dark"] {
-  background: #1e1e1e;
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: rgba(124, 108, 255, 0.4);
   color: #fff;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6d7cff, #a855f7);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+
+/* ---------- Animated aurora background ---------- */
+.bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-fx::after {
+  /* subtle grid overlay */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(128, 140, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128, 140, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 75%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  /* blur filtresi yerine yumuşak radial-gradient — GPU'suz cihazlarda
+     animasyonla birlikte blur her karede yeniden hesaplanıp donmaya yol açıyor */
+  opacity: var(--orb-opacity);
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 520px;
+  height: 520px;
+  top: -140px;
+  left: -120px;
+  background: radial-gradient(circle, #6d7cff 0%, transparent 70%);
+  animation: orbFloat1 18s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 460px;
+  height: 460px;
+  top: 30%;
+  right: -160px;
+  background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+  animation: orbFloat2 22s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 420px;
+  height: 420px;
+  bottom: -140px;
+  left: 30%;
+  background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+  animation: orbFloat3 26s ease-in-out infinite alternate;
+}
+
+/* Yalnızca translate animasyonu: scale değişimi katmanın her karede
+   yeniden rasterize edilmesine neden oluyor */
+@keyframes orbFloat1 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(90px, 70px); }
+}
+@keyframes orbFloat2 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-110px, -60px); }
+}
+@keyframes orbFloat3 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-70px, -90px); }
+}
+
+/* ---------- Sections ---------- */
+section {
+  position: relative;
+  padding: 100px 24px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  margin: 0 auto 16px;
+  text-align: center;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 4px;
+  background: var(--gradient);
+  box-shadow: var(--glow);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 56px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ---------- Glass card ----------
+   Not: büyük yüzeylerde backdrop-filter kullanılmıyor;
+   animasyonlu arka planla birleşince GPU'suz cihazlarda
+   render'ı kilitliyor. Yarı saydam yüzey + kenarlık yeterli. */
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-up    { transform: translateY(48px); }
+.reveal-down  { transform: translateY(-48px); }
+.reveal-left  { transform: translateX(-48px); }
+.reveal-right { transform: translateX(48px); }
+.reveal-scale { transform: scale(0.88); }
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 72px 16px;
+  }
 }

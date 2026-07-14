@@ -3,6 +3,7 @@ import "./Achievements.css";
 import { useLanguage } from "../../context/LanguageContext";
 import { useTheme } from "../../context/ThemeContext";
 import { FaAward, FaStar, FaTrophy } from "react-icons/fa"; // İkonlar için react-icons
+import Reveal from "../Reveal/Reveal";
 import cb from "../../images/cb.webp";
 import sm from "../../images/sm98.webp";
 import fe from "../../images/first.webp";
@@ -36,16 +37,20 @@ const Achievements = () => {
       id="achievements"
       className={`achievements ${theme === "dark" ? "dark-theme" : "light-theme"}`}
     >
-      <h2 className="achievements-title">
-        {language === "en" ? "Achievements" : "Başarılar"}
-      </h2>
+      <Reveal>
+        <h2 className="section-title">
+          {language === "en" ? "Achievements" : "Başarılar"}
+        </h2>
+      </Reveal>
       <div className="achievements-grid">
         {achievements.map((item, index) => (
-          <div key={index} className="achievement-card">
-            {item.icon}
-            <p>{item[language]}</p>
-            <img src={item.image} alt={item[language]} className="achievement-image" />
-          </div>
+          <Reveal key={index} delay={index * 140} direction="scale">
+            <div className="achievement-card glass">
+              <div className="achievement-icon-wrap">{item.icon}</div>
+              <p>{item[language]}</p>
+              <img src={item.image} alt={item[language]} className="achievement-image" />
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>

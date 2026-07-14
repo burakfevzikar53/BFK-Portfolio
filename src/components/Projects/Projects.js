@@ -2,109 +2,126 @@ import React, { useState } from "react";
 import "./Projects.css";
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
-import github1 from "../../images/ecom.png";
-import github2 from "../../images/pass.png";
-import github3 from "../../images/poster.png";
-import github4 from "../../images/q7.png";
-import github5 from "../../images/trivia.jpg";
-import github6 from "../../images/cars.png";
-import github7 from "../../images/weat.png";
-import github8 from "../../images/load.png";
-import github9 from "../../images/step.jpg";
-import { QRCodeCanvas } from "qrcode.react";
-import jsPDF from "jspdf"; // PDF kütüphanesi
+import Reveal from "../Reveal/Reveal";
+import { FaGithub, FaChartLine, FaGamepad } from "react-icons/fa";
+import { BsChatDots } from "react-icons/bs";
+import { MdRecordVoiceOver } from "react-icons/md";
+import { SiNextdotjs } from "react-icons/si";
+import { GiCardAceSpades } from "react-icons/gi";
+
 const projects = [
   {
-    name: { en: "E-commerce App", tr: "E-ticaret Uygulaması" },
+    name: { en: "Enterprise AI Chatbot", tr: "Kurumsal AI Chatbot" },
+    icon: <BsChatDots />,
+    gradient: "linear-gradient(135deg, #6d7cff, #a855f7)",
+    status: "enterprise",
+    ai: true,
     description: {
-      en: "An online shopping platform with product listing, cart, and payment features.",
-      tr: "Ürün listeleme, sepet ve ödeme özelliklerine sahip bir çevrimiçi alışveriş platformu.",
+      en: "End-to-end setup of an LLM-powered customer service chatbot serving millions of interactions: intent & dialog design, backend orchestration and web chat UI.",
+      tr: "Milyonlarca etkileşime hizmet veren, LLM destekli müşteri hizmetleri chatbot'unun uçtan uca kurulumu: intent & diyalog tasarımı, backend orkestrasyonu ve web chat arayüzü.",
     },
-    image: github1,
-    github: "https://github.com/burakfevzikar53/E-commerce-app",
-    technologies: ["React", "Node.js", "MongoDB"],
+    highlights: [
+      { en: "NLU intent & dialog flow design from scratch", tr: "Sıfırdan NLU intent & diyalog akışı tasarımı" },
+      { en: "LLM integration for generative answers", tr: "Üretken yanıtlar için LLM entegrasyonu" },
+      { en: "CRM & backend service integrations", tr: "CRM ve backend servis entegrasyonları" },
+      { en: "Seamless live-agent handover", tr: "Canlı temsilciye kesintisiz devir" },
+    ],
+    technologies: ["LLM", "NLU", "Java / Spring Boot", "React", "Redis"],
   },
   {
-    name: { en: "Password Manager", tr: "Şifre Yöneticisi" },
+    name: { en: "Voicebot & IVR Rebuild", tr: "Voicebot & IVR Yeniden Yazımı" },
+    icon: <MdRecordVoiceOver />,
+    gradient: "linear-gradient(135deg, #a855f7, #ec4899)",
+    status: "enterprise",
+    ai: true,
     description: {
-      en: "A secure application to manage and store your passwords safely.",
-      tr: "Şifrelerinizi güvenle yönetmek ve saklamak için güvenli bir uygulama.",
+      en: "Rebuilt a legacy IVR from the ground up as a modern AI voicebot platform: call-flow redesign, speech integration and 24/7 resilient architecture.",
+      tr: "Eski (legacy) IVR sisteminin modern bir AI voicebot platformu olarak sıfırdan yeniden yazımı: çağrı akışı tasarımı, konuşma entegrasyonu ve 7/24 dayanıklı mimari.",
     },
-    image: github2,
-    github: "https://github.com/burakfevzikar53/Password-Generator-in-React",
-    technologies: ["React", "Node.js", "MongoDB"],
+    highlights: [
+      { en: "Legacy call flows redesigned from scratch", tr: "Legacy çağrı akışlarının sıfırdan tasarımı" },
+      { en: "STT / TTS & NLU pipeline integration", tr: "STT / TTS ve NLU hattı entegrasyonu" },
+      { en: "Higher self-service & call deflection rates", tr: "Daha yüksek self-servis ve çağrı yönlendirme oranı" },
+      { en: "Zero-downtime migration of live traffic", tr: "Canlı trafiğin kesintisiz taşınması" },
+    ],
+    technologies: ["IVR", "STT / TTS", "NLU", "Java", "Telephony"],
   },
   {
-    name: { en: "Poster Generator", tr: "Poster Oluşturucu" },
+    name: { en: "Card Game (Mobile)", tr: "Kart Oyunu (Mobil)" },
+    icon: <GiCardAceSpades />,
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+    status: "review",
     description: {
-      en: "An app to design custom posters and graphics with ease.",
-      tr: "Kolayca özel posterler ve grafikler tasarlamak için bir uygulama.",
+      en: "A polished cross-platform card game built with React Native — custom game engine, fluid card animations and a full store release pipeline for iOS & Android.",
+      tr: "React Native ile geliştirilen, özenle işlenmiş çapraz platform kart oyunu — özel oyun motoru, akıcı kart animasyonları ve iOS & Android için eksiksiz mağaza yayın süreci.",
     },
-    image: github3,
-    github: "https://github.com/burakfevzikar53/Movie-Poster",
-    technologies: ["React", "Node.js", "MongoDB"],
+    highlights: [
+      { en: "Custom card animations & game logic engine", tr: "Özel kart animasyonları ve oyun mantığı motoru" },
+      { en: "Single codebase for iOS & Android", tr: "iOS & Android için tek kod tabanı" },
+      { en: "Currently in App Store & Google Play review", tr: "Şu anda App Store & Google Play onay sürecinde" },
+    ],
+    technologies: ["React Native", "TypeScript", "iOS", "Android"],
   },
   {
-    name: { en: "Step Counter", tr: "Adım Sayar" },
+    name: { en: "Conversation Monitoring Suite", tr: "Konuşma İzleme Platformu" },
+    icon: <FaChartLine />,
+    gradient: "linear-gradient(135deg, #22d3ee, #6d7cff)",
+    status: "enterprise",
     description: {
-      en: "A fitness app that tracks your daily steps and calorie consumption.",
-      tr: "Günlük adımlarınızı ve kalori tüketiminizi izleyen bir fitness uygulaması.",
+      en: "Real-time monitoring and analytics for chatbot & voicebot traffic: live dashboards, alerting, conversation quality metrics and funnel analysis.",
+      tr: "Chatbot ve voicebot trafiği için gerçek zamanlı izleme ve analitik: canlı dashboard'lar, alarm mekanizmaları, konuşma kalitesi metrikleri ve dönüşüm (funnel) analizi.",
     },
-    image: github9,
-    github: "https://github.com/burakfevzikar53/ReactNavite-StepCounter",
-    technologies: ["React", "Node.js", "MongoDB"],
+    highlights: [
+      { en: "Live dashboards for conversation health", tr: "Konuşma sağlığı için canlı dashboard'lar" },
+      { en: "Anomaly detection & proactive alerting", tr: "Anomali tespiti ve proaktif alarmlar" },
+      { en: "Funnel & containment-rate analytics", tr: "Funnel ve çözüm oranı analitiği" },
+      { en: "Faster incident detection & resolution", tr: "Daha hızlı hata tespiti ve çözümü" },
+    ],
+    technologies: ["Grafana", "Kibana / ELK", "Prometheus", "Node.js"],
   },
   {
-    name: { en: "Trivia Game", tr: "Bilgi Yarışması Oyunu" },
+    name: { en: "React → Next.js Migration", tr: "React → Next.js Dönüşümü" },
+    icon: <SiNextdotjs />,
+    gradient: "linear-gradient(135deg, #334155, #0f172a)",
+    status: "enterprise",
     description: {
-      en: "A quiz app with multiple categories and scoring system.",
-      tr: "Birden fazla kategoriye sahip ve puanlama sistemi olan bir bilgi yarışması uygulaması.",
+      en: "Incremental migration of a large production React (CRA) codebase to Next.js: SSR, route-based code splitting and a major Core Web Vitals boost.",
+      tr: "Büyük bir production React (CRA) kod tabanının Next.js'e aşamalı dönüşümü: SSR, route bazlı code splitting ve Core Web Vitals'ta ciddi iyileşme.",
     },
-    image: github5,
+    highlights: [
+      { en: "SSR & ISR architecture design", tr: "SSR & ISR mimari tasarımı" },
+      { en: "Incremental, zero-downtime migration strategy", tr: "Aşamalı, kesintisiz geçiş stratejisi" },
+      { en: "Significant Lighthouse / Core Web Vitals gains", tr: "Lighthouse / Core Web Vitals'ta belirgin kazanım" },
+      { en: "Improved SEO visibility & load times", tr: "SEO görünürlüğü ve yükleme sürelerinde iyileşme" },
+    ],
+    technologies: ["Next.js", "React", "TypeScript", "SSR / ISR"],
+  },
+  {
+    name: { en: "AI Quiz Game", tr: "AI Bilgi Yarışması" },
+    icon: <FaGamepad />,
+    gradient: "linear-gradient(135deg, #10b981, #22d3ee)",
+    status: "opensource",
+    ai: true,
     github: "https://github.com/burakfevzikar53/trivia-game",
-    technologies: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    name: { en: "User Profile App", tr: "Kullanıcı Profili Uygulaması" },
     description: {
-      en: "Application that creates users' business cards.",
-      tr: "Kullanıcıların kartvizitini oluşturan uygulama.",
+      en: "AI-based mobile quiz game with LLM-generated questions and adaptive difficulty — React Native frontend backed by a Spring Boot API.",
+      tr: "LLM tarafından üretilen sorular ve uyarlanabilir zorluk seviyesine sahip AI tabanlı mobil bilgi yarışması — Spring Boot API destekli React Native uygulaması.",
     },
-    image: github4,
-    github: "https://github.com/burakfevzikar53/User-Profile-Design-in-React",
-    technologies: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    name: { en: "Expanding Card", tr: "Genişleyen Kart" },
-    description: {
-      en: "An app that compresses your images and makes them look nice.",
-      tr: "Görsellerinizi sıkıştırıp güzel gözükmesini sağlayan bir uygulama",
-    },
-    image: github6,
-    github: "https://github.com/burakfevzikar53/Expanding-Card-in-React",
-    technologies: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    name: { en: "Weather App", tr: "Hava Durumu Uygulaması" },
-    description: {
-      en: "A weather forecast app fetching real-time data from APIs.",
-      tr: "API'lerden gerçek zamanlı veri çeken bir hava durumu tahmin uygulaması.",
-    },
-    image: github7,
-    github: "https://github.com/burakfevzikar53/Weather-App",
-    technologies: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    name: { en: "Blurry Loading", tr: "Bulanık Yükleme" },
-    description: {
-      en: "As your page loads, it becomes clearer in direct proportion to the image behind it.",
-      tr: "Sayfanız yüklenirken arkasında resimle doğru orantılı şekilde netleşir.",
-    },
-    image: github8,
-    github: "https://github.com/burakfevzikar53/Blurry-Loading-in-React",
-    technologies: ["React", "Node.js", "MongoDB"],
+    highlights: [
+      { en: "LLM-generated question pipeline", tr: "LLM ile soru üretim hattı" },
+      { en: "Adaptive difficulty & scoring system", tr: "Uyarlanabilir zorluk ve puanlama sistemi" },
+      { en: "Multi-category game modes", tr: "Çok kategorili oyun modları" },
+    ],
+    technologies: ["React Native", "Spring Boot", "LLM API"],
   },
 ];
+
+const statusLabels = {
+  enterprise: { en: "Enterprise", tr: "Kurumsal" },
+  review: { en: "In Store Review", tr: "Mağaza Onayında" },
+  opensource: { en: "Open Source", tr: "Açık Kaynak" },
+  live: { en: "Live", tr: "Yayında" },
+};
 
 const Projects = () => {
   const { theme } = useTheme();
@@ -117,39 +134,51 @@ const Projects = () => {
     setFlipped(newFlipped);
   };
 
-  const downloadPDF = (project) => {
-    const doc = new jsPDF();
-    doc.text(`Project Name: ${project.name[language]}`, 10, 10);
-    doc.text(`Description: ${project.description[language]}`, 10, 20);
-    doc.save(`${project.name[language]}.pdf`);
-  };
-
   return (
     <section id="projects" className={`projects ${theme}`}>
-      <h2 className="project-title">
-        {language === "en" ? "My Projects" : "Projelerim"}
-      </h2>
+      <Reveal>
+        <h2 className="section-title">
+          {language === "en" ? "My Projects" : "Projelerim"}
+        </h2>
+        <p className="section-subtitle">
+          {language === "en"
+            ? "Enterprise AI platforms, large-scale migrations and mobile games — flip the cards for the full story."
+            : "Kurumsal AI platformları, büyük ölçekli dönüşümler ve mobil oyunlar — tüm detaylar için kartları çevirin."}
+        </p>
+      </Reveal>
       <div className="projects-grid">
         {projects.map((project, index) => (
+          <Reveal key={index} delay={(index % 3) * 120}>
           <div
-            key={index}
             className={`project-card ${theme} ${
               flipped[index] ? "flipped" : ""
             }`}
           >
             <div className="card-front">
-              <img src={project.image} alt={project.name[language]} />
+              {project.ai && <span className="ai-badge">✦ AI</span>}
+              <div
+                className="project-cover"
+                style={{ background: project.gradient }}
+              >
+                <span className={`status-badge status-${project.status}`}>
+                  {project.status === "review" && <span className="status-pulse" />}
+                  {statusLabels[project.status][language]}
+                </span>
+                <span className="project-cover-icon">{project.icon}</span>
+              </div>
               <h3>{project.name[language]}</h3>
               <p>{project.description[language]}</p>
               <div className="front-buttons">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="github-button"
-                >
-                  GitHub
-                </a>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="github-button"
+                  >
+                    <FaGithub /> GitHub
+                  </a>
+                )}
                 <button
                   className="details-button"
                   onClick={() => handleFlip(index)}
@@ -159,10 +188,12 @@ const Projects = () => {
               </div>
             </div>
             <div className="card-back">
-              <h3>
-                {language === "en" ? "Project Details" : "Proje Detayları"}
-              </h3>
-              <QRCodeCanvas value={project.github} size={100} />
+              <h3>{project.name[language]}</h3>
+              <ul className="highlights">
+                {project.highlights.map((h, i) => (
+                  <li key={i}>{h[language]}</li>
+                ))}
+              </ul>
               <div className="technologies">
                 {project.technologies.map((tech, i) => (
                   <span key={i} className="tag">
@@ -171,12 +202,16 @@ const Projects = () => {
                 ))}
               </div>
               <div className="back-buttons">
-                <button
-                  className="pdf-button"
-                  onClick={() => downloadPDF(project)}
-                >
-                  {language === "en" ? "Download PDF" : "PDF İndir"}
-                </button>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="github-button"
+                  >
+                    <FaGithub /> GitHub
+                  </a>
+                )}
                 <button
                   className="go-back-button"
                   onClick={() => handleFlip(index)}
@@ -186,6 +221,7 @@ const Projects = () => {
               </div>
             </div>
           </div>
+          </Reveal>
         ))}
       </div>
     </section>

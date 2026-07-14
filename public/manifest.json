@@ -1,6 +1,6 @@
 {
   "short_name": "BurakFevziKAR",
-  "name": "Create React App Sample",
+  "name": "Burak Fevzi KAR — AI Engineer & Full Stack Developer",
   "icons": [
     {
       "src": "tr.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#070912",
+  "background_color": "#070912"
 }
